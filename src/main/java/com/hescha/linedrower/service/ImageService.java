@@ -14,7 +14,7 @@ import java.util.List;
 
 @Service
 public class ImageService {
-    private static final int MULTIPLIER = 5;
+    private static final int MULTIPLIER = 10;
     private static final int PADDING = 5;
     int size;
 
