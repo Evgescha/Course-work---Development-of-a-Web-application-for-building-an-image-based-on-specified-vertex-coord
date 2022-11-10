@@ -82,7 +82,7 @@ function sendData () {
     $.ajax({
         type: "POST",
         contentType: "application/json",
-        url: "/",
+        url: "/image",
         data: JSON.stringify(data),
         dataType: 'json',
         cache: false,
