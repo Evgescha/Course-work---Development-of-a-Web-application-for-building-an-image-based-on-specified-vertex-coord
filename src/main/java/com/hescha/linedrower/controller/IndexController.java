@@ -3,7 +3,9 @@ package com.hescha.linedrower.controller;
 import com.hescha.linedrower.model.Line;
 import com.hescha.linedrower.model.Lines;
 import com.hescha.linedrower.model.Point;
+import lombok.RequiredArgsConstructor;
 import org.apache.commons.io.IOUtils;
+import org.springframework.context.ApplicationContext;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -19,7 +21,9 @@ import java.util.Map;
 
 @Controller
 @RequestMapping("/")
+@RequiredArgsConstructor
 public class IndexController {
+    private final ApplicationContext context;
     public static int counter = 0;
     private static Map<Integer, byte[]> map = new HashMap<>();
 
@@ -32,21 +36,21 @@ public class IndexController {
         return "index.html";
     }
 
-    @PostMapping
+    @PostMapping("/image")
     public ResponseEntity<String> makeImage(@RequestBody Lines lines) {
         counter++;
 
-        return ResponseEntity.ok("/" + counter);
+        return ResponseEntity.ok("/image/" + counter);
     }
 
-    @GetMapping(path = "/{id}", produces = MediaType.IMAGE_PNG_VALUE)
+    @GetMapping(path = "/image/{id}", produces = MediaType.IMAGE_PNG_VALUE)
     @ResponseBody
-    public byte[] getResult(@PathVariable Integer id, ServletContext servletContext) throws IOException {
+    public byte[] getResult(@PathVariable Integer id) throws IOException {
         if(map.containsKey(id)){
             return map.get(id);
         }
 
-        InputStream in = servletContext.getResourceAsStream("/404.png");
+        InputStream in = context.getResource("classpath:/static/404.png").getInputStream();
         return IOUtils.toByteArray(in);
     }
 }
