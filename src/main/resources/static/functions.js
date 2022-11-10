@@ -19,6 +19,7 @@ function addLine() {
   <div>
     <div>Line</div>
   </div>
+  <input type="button" onclick="deletePoint(this)" value="Delete line" />
   <input type="button" value="Add point" onclick="addPoint(this)">
   <div class="points">
     <div class="point">
