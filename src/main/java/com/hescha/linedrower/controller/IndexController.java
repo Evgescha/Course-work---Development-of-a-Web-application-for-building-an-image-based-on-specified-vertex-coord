@@ -3,6 +3,7 @@ package com.hescha.linedrower.controller;
 import com.hescha.linedrower.model.Line;
 import com.hescha.linedrower.model.Lines;
 import com.hescha.linedrower.model.Point;
+import com.hescha.linedrower.service.ImageService;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.io.IOUtils;
 import org.springframework.context.ApplicationContext;
@@ -23,6 +24,8 @@ import java.util.Map;
 @RequestMapping("/")
 @RequiredArgsConstructor
 public class IndexController {
+    private final ImageService imageService;
+
     private final ApplicationContext context;
     public static int counter = 0;
     private static Map<Integer, byte[]> map = new HashMap<>();
@@ -37,16 +40,16 @@ public class IndexController {
     }
 
     @PostMapping("/image")
-    public ResponseEntity<String> makeImage(@RequestBody Lines lines) {
+    public ResponseEntity<String> makeImage(@RequestBody Lines lines) throws IOException {
         counter++;
-
+        map.put(counter, imageService.generateImage(lines.getLines()));
         return ResponseEntity.ok("/image/" + counter);
     }
 
     @GetMapping(path = "/image/{id}", produces = MediaType.IMAGE_PNG_VALUE)
     @ResponseBody
     public byte[] getResult(@PathVariable Integer id) throws IOException {
-        if(map.containsKey(id)){
+        if (map.containsKey(id)) {
             return map.get(id);
         }
 

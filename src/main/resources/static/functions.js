@@ -16,10 +16,10 @@ function addPoint(line) {
 function addLine() {
     var newMessage = `
 <div class="line">
-  <input type="button" value="Add point" onclick="addPoint(this)">
   <div>
     <div>Line</div>
   </div>
+  <input type="button" value="Add point" onclick="addPoint(this)">
   <div class="points">
     <div class="point">
       <div>Point X: <input type="number" class="pointX" required />

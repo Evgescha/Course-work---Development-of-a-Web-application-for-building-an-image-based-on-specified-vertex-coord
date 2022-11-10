@@ -17,10 +17,10 @@
         <input type="button" value="Add line" onclick="addLine()">
         <div class="lines">
             <div class="line" th:each="line:${lines}">
-                <input type="button" value="Add point" onclick="addPoint(this)">
                 <div>
                     <div>Line</div>
                 </div>
+                <input type="button" value="Add point" onclick="addPoint(this)">
                 <div class="points">
                     <div class="point" name="point" th:each="point:${line.points}">
                         <div>
