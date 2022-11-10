@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Main page</title>
+</head>
+<body>
+
+<section>
+    <form action="/" method="POST">
+        <input type="submit" value="Submit">
+        <input type="button" value="Add line" onclick="addLine()">
+        <div class="lines" name="lines">
+            <div class="line" name="line">
+                <input type="button" value="Add point" onclick="addPoint(this)">
+                <div>
+                    <div>Line number: <input type="number" value="1" name="lineNumber" required/>
+                    </div>
+                </div>
+                <div class="points">
+                    <div class="point" name="point">
+                        <div>Point number: <input type="number" value="1" name="pointNumber" required/>
+                        </div>
+                        <div>Point X: <input type="number" name="pointX" required/>
+                        </div>
+                        <div>Point Y: <input type="number" name="pointY" required/>
+                        </div>
+                    </div>
+                    <div class="point" name="point">
+                        <div>Point number: <input type="number" value="2" name="pointNumber" required/>
+                        </div>
+                        <div>Point X: <input type="number" name="pointX" required/>
+                        </div>
+                        <div>Point Y: <input type="number" name="pointY" required/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</section>
+
+<script>
+function addPoint(line) {
+    var newMessage = ` <div class="point"  name="point">
+  <div>Point number: <input type="number" value="1" name="pointNumber" required />
+  </div>
+  <div>Point X: <input type="number" name="pointX" required />
+  </div>
+  <div>Point Y: <input type="number" name="pointY" required />
+  </div>
+  <input type="button" onclick="deletePoint(this)" value="Delete point" />
+</div>`;
+    var place = document.querySelector(".points");
+    line.parentElement.insertAdjacentHTML("beforeend", newMessage);
+};
+
+function addLine() {
+    var newMessage = ` <div class="line" name="line">
+  <input type="button" value="Add point" onclick="addPoint(this)">
+  <div>
+    <div>Line number: <input type="number" value="1" name="lineNumber" required />
+    </div>
+  </div>
+  <div class="points"> name="points"
+    <div class="point"  name="point">
+      <div>Point number: <input type="number" value="1" name="pointNumber" required />
+      </div>
+      <div>Point X: <input type="number" name="pointX" required />
+      </div>
+      <div>Point Y: <input type="number" name="pointY" required />
+      </div>
+    </div>
+    <div class="point" name="point">
+      <div>Point number: <input type="number" value="2" name="pointNumber" required />
+      </div>
+      <div>Point X: <input type="number" name="pointX" required />
+      </div>
+      <div>Point Y: <input type="number" name="pointY" required />
+      </div>
+    </div>
+  </div>
+</div> `;
+    var place = document.querySelector("form");
+    place.insertAdjacentHTML("beforeend", newMessage);
+};
+
+function deletePoint(point) {
+    point.parentElement.remove();
+}
+
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Main page</title>
+    <script type="text/javascript"
+            src="webjars/jquery/2.2.4/jquery.min.js"></script>
+    <script src="/functions.js"></script>
+    <!--    <link href="/style.css" rel="stylesheet" crossorigin="anonymous">-->
+</head>
+<body>
+
+<section>
+    <form action="/" method="POST">
+        <input type="button" value="Submit" onclick="sendData()">
+        <input type="submit" value="Submit" hidden class="submit">
+        <input type="button" value="Add line" onclick="addLine()">
+        <div class="lines">
+            <div class="line" th:each="line:${lines}">
+                <input type="button" value="Add point" onclick="addPoint(this)">
+                <div>
+                    <div>Line</div>
+                </div>
+                <div class="points">
+                    <div class="point" name="point" th:each="point:${line.points}">
+                        <div>
+                            Point X: <input type="number" class="pointX" th:value="${point.pointX}" required/>
+                        </div>
+                        <div>
+                            Point Y: <input type="number" class="pointY" th:value="${point.pointY}" required/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</section>
+
+</body>
+</html>
