@@ -50,7 +50,9 @@ public class IndexController {
     @ResponseBody
     public byte[] getResult(@PathVariable Integer id) throws IOException {
         if (map.containsKey(id)) {
-            return map.get(id);
+            byte[] bytes = map.get(id);
+            map.remove(id);
+            return bytes;
         }
 
         InputStream in = context.getResource("classpath:/static/404.png").getInputStream();

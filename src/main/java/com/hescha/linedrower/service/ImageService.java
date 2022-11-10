@@ -16,6 +16,8 @@ import java.util.List;
 public class ImageService {
     private static final int MULTIPLIER = 10;
     private static final int PADDING = 5;
+    private static final int MIN_SIZE = 100;
+    private static final int MAX_SIZE = 10000;
     int size;
 
     public byte[] generateImage(List<Line> lines) throws IOException {
@@ -61,6 +63,8 @@ public class ImageService {
         int maxWidth = Integer.max(Math.abs(minX), maxX) * MULTIPLIER;
         int maxHeight = Integer.max(Math.abs(minY), maxY) * MULTIPLIER;
         size = Integer.max(maxWidth, maxHeight);
+        if (size < MIN_SIZE) size = MIN_SIZE;
+        if (size > MAX_SIZE) size = MAX_SIZE;
     }
 
     private void drawLine(Graphics2D g2d, Line line) {

@@ -6,7 +6,7 @@
     <script type="text/javascript"
             src="webjars/jquery/2.2.4/jquery.min.js"></script>
     <script src="/functions.js"></script>
-    <!--    <link href="/style.css" rel="stylesheet" crossorigin="anonymous">-->
+        <link href="/style.css" rel="stylesheet" crossorigin="anonymous">
 </head>
 <body>
 
@@ -17,9 +17,7 @@
         <input type="button" value="Add line" onclick="addLine()">
         <div class="lines">
             <div class="line" th:each="line:${lines}">
-                <div>
-                    <div>Line</div>
-                </div>
+                <div class="lineTitle">Line</div>
                 <input type="button" value="Add point" onclick="addPoint(this)">
                 <div class="points">
                     <div class="point" name="point" th:each="point:${line.points}">

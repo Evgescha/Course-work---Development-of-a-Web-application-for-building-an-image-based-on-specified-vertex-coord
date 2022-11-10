@@ -16,9 +16,7 @@ function addPoint(line) {
 function addLine() {
     var newMessage = `
 <div class="line">
-  <div>
-    <div>Line</div>
-  </div>
+  <div class="lineTitle">Line</div>
   <input type="button" onclick="deletePoint(this)" value="Delete line" />
   <input type="button" value="Add point" onclick="addPoint(this)">
   <div class="points">
